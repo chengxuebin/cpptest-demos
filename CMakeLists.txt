@@ -97,4 +97,20 @@ if(NOT ${C_MOCK_TARGET_NAME}_POPULATED)
   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/${C_MOCK_TARGET_NAME}/include)
 endif()
 
+# 安装 cpp_stub 依赖
+set(CPP_STUB_TARGET_NAME "cpp_stub")
+FetchContent_Declare(
+  ${CPP_STUB_TARGET_NAME}
+  GIT_REPOSITORY https://github.com/coolxv/cpp-stub
+  GIT_TAG bef3fb4c8c329d87d2f5880219653bf8ecaf2548
+  GIT_SUBMODULES ""
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/${CPP_STUB_TARGET_NAME}
+)
+FetchContent_GetProperties(${CPP_STUB_TARGET_NAME})
+
+if(NOT ${CPP_STUB_TARGET_NAME}_POPULATED)
+  FetchContent_Populate(${CPP_STUB_TARGET_NAME})
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/${CPP_STUB_TARGET_NAME}/src)
+endif()
+
 add_subdirectory(test)

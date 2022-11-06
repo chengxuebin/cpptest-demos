@@ -11,7 +11,10 @@ add_executable(
 
   # gmock_global.cpp
   # fff.cpp
+  cpp_stub.cpp
 )
+
+target_compile_options(${PROJECT_NAME} PRIVATE -fno-access-control -fno-inline -Wno-pmf-conversions -Wl,--allow-multiple-definition -no-pie -fno-stack-protector -fprofile-arcs -ftest-coverage)
 
 target_link_libraries(
   ${PROJECT_NAME}
